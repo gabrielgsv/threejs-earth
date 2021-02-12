@@ -20,6 +20,7 @@ camera.position.set(10, 0, 5);
 // camera.lookAt(0, 0, 0);
 controls.update();
 
+//add lights
 const light = new THREE.AmbientLight(0x404040, 2); // soft white light
 scene.add(light);
 
