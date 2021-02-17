@@ -9,14 +9,14 @@ document.body.appendChild(renderer.domElement);
 
 //criar camera
 const camera = new THREE.PerspectiveCamera(
-  75,
+  30,
   window.innerWidth / window.innerHeight,
   0.1,
   1000
 );
 const controls = new OrbitControls(camera, renderer.domElement);
 
-camera.position.set(10, 0, 5);
+camera.position.set(10, 0, 60);
 // camera.lookAt(0, 0, 0);
 controls.update();
 
@@ -28,9 +28,10 @@ const dirLight = new THREE.DirectionalLight(0xffffff, 2);
 dirLight.position.set(-1, 0, 1).normalize();
 scene.add(dirLight);
 
+const textureLoader = new THREE.TextureLoader();
+
 //criar esfera com testura de planeta
 const geometry = new THREE.SphereGeometry(5, 32, 32);
-const textureLoader = new THREE.TextureLoader();
 const material = new THREE.MeshPhongMaterial({
   specular: 0x333333,
   shininess: 15,
@@ -51,10 +52,21 @@ const materialClouds = new THREE.MeshLambertMaterial({
   transparent: true,
 });
 
+const geometryMars = new THREE.SphereGeometry(5, 32, 32);
+const materialMars = new THREE.MeshPhongMaterial({
+  specular: 0x333333,
+  shininess: 15,
+  map: textureLoader.load("../textures/mars/mars.jpg"),
+});
+const mars = new THREE.Mesh(geometryMars, materialMars);
+mars.position.set(20, 0, 0);
+scene.add(mars);
+
 const meshClouds = new THREE.Mesh(geometry, materialClouds);
 meshClouds.scale.set(1.005, 1.005, 1.005);
 meshClouds.rotation.z = 0.41;
 scene.add(meshClouds);
+
 
 //criar animação por frame
 function animate() {
