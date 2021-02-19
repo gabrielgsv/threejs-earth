@@ -4,6 +4,11 @@ import Mars from "./planets/Mars.js";
 import Earth from "./planets/Earth.js";
 import Venus from "./planets/Venus.js";
 import Mercury from "./planets/Mercury.js";
+import Jupiter from "./planets/Jupiter.js";
+import Saturn from "./planets/Saturn.js";
+import Uranus from "./planets/Uranus.js";
+import Neptune from "./planets/Neptune.js";
+import Pluto from "./planets/Pluto.js";
 // criar cenario
 const scene = new THREE.Scene();
 
@@ -20,16 +25,16 @@ const camera = new THREE.PerspectiveCamera(
 );
 const controls = new OrbitControls(camera, renderer.domElement);
 
-camera.position.set(10, 0, 150);
+camera.position.set(137, 24, 361);
 // camera.lookAt(0, 0, 0);
 controls.update();
 
 //add lights
-const light = new THREE.AmbientLight(0x404040, 2); // soft white light
+const light = new THREE.AmbientLight(0x404040, 1.5); // soft white light
 scene.add(light);
 
 const dirLight = new THREE.DirectionalLight(0xffffff, 1);
-dirLight.position.set(-1, 0, 1).normalize();
+dirLight.position.set(-1, 0, -1).normalize();
 scene.add(dirLight);
 
 const textureLoader = new THREE.TextureLoader();
@@ -43,26 +48,48 @@ scene.add(mercury);
 const venus = Venus(textureLoader);
 scene.add(venus);
 
-const mars = Mars(textureLoader);
-scene.add(mars);
-
 const { earth, meshClouds } = Earth(textureLoader);
 scene.add(earth);
 scene.add(meshClouds);
 
+const mars = Mars(textureLoader);
+scene.add(mars);
+
+const jupiter = Jupiter(textureLoader);
+scene.add(jupiter);
+
+const { saturn, ring } = Saturn(textureLoader);
+scene.add(saturn);
+scene.add(ring);
+
+const uranus = Uranus(textureLoader);
+scene.add(uranus);
+
+const neptune = Neptune(textureLoader);
+scene.add(neptune);
+
+const pluto = Pluto(textureLoader);
+scene.add(pluto);
+
+
 //criar animação por frame
 function animate() {
   requestAnimationFrame(animate);
-
+  
   controls.update();
-
+  
   earth.rotation.y += 0.004;
   meshClouds.rotation.y += 0.003;
-
+  
   mars.rotation.y += 0.004;
   mercury.rotation.y += 0.004;
   venus.rotation.y += 0.004;
-
+  jupiter.rotation.y += 0.004;
+  saturn.rotation.y += 0.004;
+  uranus.rotation.y += 0.004;
+  neptune.rotation.y += 0.004;
+  pluto.rotation.y += 0.004;
+  console.log(camera)
   renderer.render(scene, camera);
 }
 animate();

@@ -9,6 +9,6 @@ export default function Mercury(textureLoader) {
     bumpMap: textureLoader.load("../../textures/mercury/mercurybump.jpg"),
   });
   const mercury = new THREE.Mesh(geometryMercury, materialMercury);
-  mercury.position.set(-40, 0, 0);
+  mercury.position.set(-35, 0, 0);
   return mercury;
 }
