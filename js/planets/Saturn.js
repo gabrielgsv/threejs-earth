@@ -10,14 +10,14 @@ export default function Saturn(textureLoader) {
   const saturn = new THREE.Mesh(geometrySaturn, materialSaturn);
   saturn.position.set(75, 0, 0);
 
-  const geometryRing = new THREE.RingGeometry(10, 5, 32);
+  const geometryRing = new THREE.RingGeometry(10, 15, 32);
   const materialRing = new THREE.MeshPhongMaterial({
     map: textureLoader.load("../../textures/saturn/saturnringcolor.jpg"),
-    bumpMap: textureLoader.load("../../textures/saturn/saturnringpattern.gif"),
     side: THREE.DoubleSide,
   });
   const ring = new THREE.Mesh(geometryRing, materialRing);
+  ring.rotation.x += 1.8;
   ring.position.set(75, 0, 0);
 
-  return {saturn, ring};
+  return { saturn, ring };
 }

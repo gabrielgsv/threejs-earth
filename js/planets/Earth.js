@@ -17,7 +17,7 @@ export default function Earth(textureLoader) {
 
   // clouds
 
-  const materialClouds = new THREE.MeshLambertMaterial({
+  const materialClouds = new THREE.MeshPhongMaterial({
     map: textureLoader.load("../../textures/earth/earth_clouds.png"),
     transparent: true,
   });

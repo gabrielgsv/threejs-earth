@@ -30,12 +30,12 @@ camera.position.set(137, 24, 361);
 controls.update();
 
 //add lights
-const light = new THREE.AmbientLight(0x404040, 1.5); // soft white light
+const light = new THREE.AmbientLight(0x404040, 2.3); // soft white light
 scene.add(light);
 
-const dirLight = new THREE.DirectionalLight(0xffffff, 1);
-dirLight.position.set(-1, 0, -1).normalize();
-scene.add(dirLight);
+const directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
+directionalLight.position.set(-50, 0, 0)
+scene.add( directionalLight );
 
 const textureLoader = new THREE.TextureLoader();
 
@@ -89,6 +89,7 @@ function animate() {
   uranus.rotation.y += 0.004;
   neptune.rotation.y += 0.004;
   pluto.rotation.y += 0.004;
+  ring.rotation.z -= 0.004;
   console.log(camera)
   renderer.render(scene, camera);
 }
